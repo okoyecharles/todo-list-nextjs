@@ -7,8 +7,7 @@
 }
 
 .checkbox-button:has(input:focus) {
-  outline: auto;
-  outline-color: #0A84FF;
+  box-shadow: 0 0 0 2.5px #0a84ffb6;
 }
 
 .checkbox-button:not(:has(input:checked)) svg {

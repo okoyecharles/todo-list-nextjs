@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa";
 
 export default function Navigation() {
   return (
-    <nav className="py-4 px-6 flex justify-end">
+    <nav className="py-4 px-6 flex justify-end mb-8">
       <a
         href="https://github.com/okoyecharles/todo-list-nextjs"
         target="blank"
