@@ -22,7 +22,7 @@ module.exports = {
       'light': {
         DEFAULT: '#fff',
         'primary': '#DDD',
-        'seconadry': '#AAA'
+        'secondary': '#AAA'
       }
     },
     screens: {
