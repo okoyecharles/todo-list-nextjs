@@ -1,3 +1,4 @@
+import Navigation from './components/nav/navigation'
 import './globals.css'
 
 export const metadata = {
@@ -8,7 +9,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex bg-dark text-light-secondary">{children}</body>
+      <body className="flex flex-col bg-dark text-light-secondary">
+        <Navigation />
+        <main>
+         {children}
+        </main>
+      </body>
     </html>
   )
 }
