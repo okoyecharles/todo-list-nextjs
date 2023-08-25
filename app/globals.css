@@ -6,6 +6,11 @@
   background: #0A84FF;
 }
 
+.checkbox-button:has(input:focus) {
+  outline: auto;
+  outline-color: #0A84FF;
+}
+
 .checkbox-button:not(:has(input:checked)) svg {
   opacity: 0;
 }

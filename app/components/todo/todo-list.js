@@ -28,10 +28,10 @@ function Todo({ todo }) {
           <p className="text-[15px] py-3 px-4">{todo.name}</p>
         </div>
         <div className="todo-item-buttons flex items-center gap-4 py-3 pr-6">
-          <button className="ml-auto">
+          <button className="ml-auto hover:text-light-primary transition-colors">
             <BiSolidPencil />
           </button>
-          <button>
+          <button className="hover:text-light-primary transition-colors">
             <FaTrashAlt />
           </button>
         </div>

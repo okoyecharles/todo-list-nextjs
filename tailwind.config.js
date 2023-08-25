@@ -12,7 +12,10 @@ module.exports = {
       xl: '1.125rem',
     },
     colors: {
-      'blue': '#0A84FF',
+      'blue': {
+        DEFAULT: '#0A84FF', 
+        'primary': '#1570CD'
+      },
       'dark': {
         DEFAULT: '#000',
         'primary': '#111',

@@ -8,7 +8,7 @@ export default function Navigation() {
         target="blank"
         rel="noreferrer noopener"
       >
-        <FaGithub className="text-xl text-light-primary" />
+        <FaGithub className="text-[1.5rem] text-light-primary" />
       </a>
     </nav>
   );
