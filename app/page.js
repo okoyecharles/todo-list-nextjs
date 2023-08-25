@@ -1,9 +1,11 @@
+import TodoContainer from "./components/todo/todo-container";
+
 export default function Home() {
   /* APP LAYOUT
     <C> -> Component, <F> -> From Componenet
   
     app
-    - nav (github link) <C>
+    - nav (github link) <C> done
     - todo container <C>
       - todo header <C>
         - logo <C>
@@ -27,6 +29,6 @@ export default function Home() {
 
   */
   return (
-    <div>Hello World</div>
+    <TodoContainer />
   )
 }

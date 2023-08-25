@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="flex flex-col bg-dark text-light-secondary">
         <Navigation />
-        <main>
+        <main className='px-6 py-4'>
          {children}
         </main>
       </body>

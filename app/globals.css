@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.checkbox-button:has(input:checked) {
+  background: #0A84FF;
+}
+
+.checkbox-button:not(:has(input:checked)) svg {
+  opacity: 0;
+}
