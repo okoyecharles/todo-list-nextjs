@@ -2,14 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* This is only for browsers that support the ':has' selector */
+.checkbox-button:has(input) input {
+  opacity: 0;
+}
+
 .checkbox-button:has(input:checked) {
   background: #0A84FF;
 }
 
-.checkbox-button:has(input:focus) {
-  box-shadow: 0 0 0 2.5px #0a84ffb6;
+.checkbox-button svg {
+  opacity: 0;
 }
 
-.checkbox-button:not(:has(input:checked)) svg {
-  opacity: 0;
+.checkbox-button:has(input:checked) svg {
+  opacity: 100;
+}
+
+.checkbox-button:has(input:focus) {
+  box-shadow: 0 0 0 2.5px #0a84ffb6;
 }
