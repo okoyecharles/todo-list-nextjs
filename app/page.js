@@ -27,6 +27,16 @@ export default function Home() {
       - modal buttons
     - button <C> done
 
+    APP FUNCTIONALITY
+    - create todo
+    - edit todo
+    - mark todo as completed
+    - delete todo
+    - view todo info
+    - change show completed to dropdown
+    - search todo
+    - reorder todos
+
   */
   return (
     <TodoContainer />
