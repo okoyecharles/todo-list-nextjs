@@ -35,7 +35,7 @@ export default function Home() {
     - view todo info
     - change show completed to dropdown
     - search todo
-    - reorder todos
+    - reorder todos (not required now)
 
   */
   return (
