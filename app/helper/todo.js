@@ -77,7 +77,6 @@ function TodoHelper(todos, setTodos) {
       return filtered;
     },
     getEmptyMessage(type, filterValue = null) {
-      console.log(type);
       switch (type) {
         case "search":
           return (
