@@ -7,10 +7,19 @@ import TodoList from "./todo-list";
 import CreateTodoModal from "../modal/create-todo-modal";
 import EditTodoModal from "../modal/edit-todo-modal";
 import TodoInfoModal from "../modal/todo-info-modal";
-import useStorage from "@/app/hooks/useStorage";
 
 export default function TodoContainer() {
-  const [todos, setTodos] = useStorage();
+  // Reminder: Change this back to useStorage
+  const [todos, setTodos] = useState([
+    { id: 1, name: "Clean the House", description: "", completed: false },
+    { id: 2, name: "Wash the dishes", description: "", completed: false },
+    {
+      id: 3,
+      name: "Hover over the buttons",
+      description: "",
+      completed: false,
+    },
+  ]);
   const { createTodo, editTodo, deleteTodo, filterTodos, getEmptyMessage } = TodoHelper(
     todos,
     setTodos
@@ -37,7 +46,7 @@ export default function TodoContainer() {
       else if (searchFilter) return getEmptyMessage("search", searchFilter);
       else return getEmptyMessage("filter", dropdownFilter);
     }
-    return null;
+    return { id: null, message: null };
   }, [filteredTodos])
 
   return (
