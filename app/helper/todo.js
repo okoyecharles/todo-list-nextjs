@@ -1,5 +1,3 @@
-import { FaSearch } from "react-icons/fa";
-import Button from "../components/element/button";
 import { AiOutlinePlus } from "react-icons/ai";
 
 function TodoHelper(todos, setTodos) {
@@ -95,13 +93,12 @@ function TodoHelper(todos, setTodos) {
         default:
           return (
             <div className="px-6 py-3 text-[15px] flex flex-col items-center">
-              <p>There are currently no todos</p>
               <p className="flex gap-[0.5ch] items-center">
                 Click{" "}
                 <span className="bg-blue rounded text-base inline-block p-[2px] h-fit">
                   <AiOutlinePlus className="text-[12px] text-light" />
                 </span>{" "}
-                to create one
+                to create a Todo
               </p>
             </div>
           );

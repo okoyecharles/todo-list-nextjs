@@ -7,9 +7,10 @@ import TodoList from "./todo-list";
 import CreateTodoModal from "../modal/create-todo-modal";
 import EditTodoModal from "../modal/edit-todo-modal";
 import TodoInfoModal from "../modal/todo-info-modal";
+import useStorage from "@/app/hooks/useStorage";
 
 export default function TodoContainer() {
-  const [todos, setTodos] = useState([
+  const [todos, setTodos] = useStorage([
     { id: 1, name: "Clean the House", description: "", completed: false },
     { id: 2, name: "Wash the dishes", description: "", completed: false },
     {
