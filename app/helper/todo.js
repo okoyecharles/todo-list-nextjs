@@ -15,8 +15,9 @@ function TodoHelper(todos, setTodos) {
     createTodo({ name, description }) {
       try {
         validateTodo({ name, description });
+        const prevTodo = todos.at(-1) ?? { id: -1 };
         const todo = {
-          id: todos.length + 1,
+          id: prevTodo.id + 1,
           name: name.trim(),
           description: description.trim(),
           completed: false,
@@ -48,11 +49,7 @@ function TodoHelper(todos, setTodos) {
       }
     },
     deleteTodo(id) {
-      setTodos(
-        todos
-          .filter((todo) => todo.id !== id)
-          .map((todo, i) => ({ ...todo, id: i + 1 }))
-      );
+      setTodos(todos.filter((todo) => todo.id !== id));
     },
     filterTodos({ search, dropdown }) {
       const filtered = todos
@@ -75,23 +72,29 @@ function TodoHelper(todos, setTodos) {
       return filtered;
     },
     getEmptyMessage(type, filterValue = null) {
+      const res = { id: null, message: null }
       switch (type) {
         case "search":
-          return (
+          res.id = "search";
+          res.message = (
             <p className="px-6 py-3 text-[15px] truncate">
               No Todo matches the search{" "}
               <span className="text-blue">"{filterValue.trim()}"</span>
             </p>
           );
+          break;
         case "filter":
-          return (
+          res.id = filterValue;
+          res.message =  (
             <p className="px-6 py-3 text-[15px]">
               There are currently no{" "}
               <span className="text-blue">{capitalize(filterValue)}</span> Todos
             </p>
           );
+          break;
         default:
-          return (
+          res.id = "default";
+          res.message = (
             <div className="px-6 py-3 text-[15px] flex flex-col items-center">
               <p className="flex gap-[0.5ch] items-center">
                 Click{" "}
@@ -102,7 +105,9 @@ function TodoHelper(todos, setTodos) {
               </p>
             </div>
           );
+          break;
       }
+      return res;
     },
   };
 }

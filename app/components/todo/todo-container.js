@@ -10,6 +10,7 @@ import TodoInfoModal from "../modal/todo-info-modal";
 import useStorage from "@/app/hooks/useStorage";
 
 export default function TodoContainer() {
+  // Reminder: Change this back to useStorage
   const [todos, setTodos] = useStorage();
   const { createTodo, editTodo, deleteTodo, filterTodos, getEmptyMessage } = TodoHelper(
     todos,
@@ -37,7 +38,7 @@ export default function TodoContainer() {
       else if (searchFilter) return getEmptyMessage("search", searchFilter);
       else return getEmptyMessage("filter", dropdownFilter);
     }
-    return null;
+    return { id: null, message: null };
   }, [filteredTodos])
 
   return (

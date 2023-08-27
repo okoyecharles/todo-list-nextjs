@@ -1,6 +1,7 @@
 import { BiSolidPencil } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import Checkbox from "../element/checkbox";
+import { a, useSpring, useTransition } from "@react-spring/web";
 
 export default function TodoList({
   todos,
@@ -10,25 +11,57 @@ export default function TodoList({
   deleteTodo,
   empty,
 }) {
-  return empty ? (
-    empty
-  ) : (
-    <ul className="p-0 flex flex-col mb-[10px]">
-      {todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          todo={todo}
-          setEdit={setEdit}
-          setInfo={setInfo}
-          editTodo={editTodo}
-          deleteTodo={deleteTodo}
-        />
-      ))}
-    </ul>
+  // Spring animations for list
+  const todoHeight = 46.5;
+  const bottomPadding = 10;
+  const todoSprings = useTransition(
+    todos.map((todo, i) => ({ ...todo, y: i * todoHeight })),
+    {
+      key: (todo) => todo.id,
+      from: { height: 0 },
+      leave: { height: 0, opacity: 0 },
+      enter: ({ y }) => ({ y, opacity: 1 }),
+      update: ({ y }) => ({ y }),
+      config: {
+        friction: 50,
+        tension: 500,
+      },
+    }
+  );
+  const todoListSpring = useSpring({
+    height: empty.message ? todoHeight : todoHeight * todos.length + bottomPadding,
+  });
+  const todoListEmptyString = useTransition([empty], {
+    key: ({ id }) => id,
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    update: { opacity: 1 },
+  });
+
+  return (
+    <a.ul className="relative" style={todoListSpring}>
+      {empty.message
+        ? todoListEmptyString((spring, empty) => (
+            <a.div className="todo-empty" style={spring}>
+              {empty.message}
+            </a.div>
+          ))
+        : todoSprings((spring, todo) => (
+            <Todo
+              key={todos.id}
+              todo={todo}
+              setEdit={setEdit}
+              setInfo={setInfo}
+              editTodo={editTodo}
+              deleteTodo={deleteTodo}
+              spring={spring}
+            />
+          ))}
+    </a.ul>
   );
 }
 
-function Todo({ todo, setEdit, setInfo, editTodo, deleteTodo }) {
+function Todo({ todo, setEdit, setInfo, editTodo, deleteTodo, spring }) {
   const handleEdit = () => {
     // This is kinda redundant, just experimenting ;)
     new Promise((resolve) => {
@@ -57,12 +90,7 @@ function Todo({ todo, setEdit, setInfo, editTodo, deleteTodo }) {
   };
 
   return (
-    <li className="bg-dark relative font-base">
-      <div
-        className={`edit-marker h-full w-[3px] absolute top-0 left-0 bg-blue ${
-          todo && "opacity-0"
-        }`}
-      />
+    <a.li className="bg-dark font-base absolute w-full" style={spring}>
       <div className="todo-item-container flex items-center">
         <div className="todo-item-action pl-6 py-3">
           <Checkbox
@@ -72,12 +100,12 @@ function Todo({ todo, setEdit, setInfo, editTodo, deleteTodo }) {
             onChange={handleCheck}
           />
         </div>
-        <div
-          className="todo-item-title flex-1 cursor-pointer overflow-hidden"
+        <button
+          className="todo-item-title flex-1 cursor-pointer overflow-hidden text-left ring-[1px] ring-transparent ring-inset focus-visible:ring-line outline-none"
           onClick={handleInfo}
         >
           <p className="text-[15px] py-3 px-4 truncate">{todo.name}</p>
-        </div>
+        </button>
         <div className="todo-item-buttons flex items-center gap-4 py-3 pr-6">
           <button
             className="ml-auto hover:text-light-primary transition-colors"
@@ -93,6 +121,6 @@ function Todo({ todo, setEdit, setInfo, editTodo, deleteTodo }) {
           </button>
         </div>
       </div>
-    </li>
+    </a.li>
   );
 }
