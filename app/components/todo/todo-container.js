@@ -10,16 +10,7 @@ import TodoInfoModal from "../modal/todo-info-modal";
 import useStorage from "@/app/hooks/useStorage";
 
 export default function TodoContainer() {
-  const [todos, setTodos] = useStorage([
-    { id: 1, name: "Clean the House", description: "", completed: false },
-    { id: 2, name: "Wash the dishes", description: "", completed: false },
-    {
-      id: 3,
-      name: "Hover over the buttons",
-      description: "",
-      completed: false,
-    },
-  ]);
+  const [todos, setTodos] = useStorage();
   const { createTodo, editTodo, deleteTodo, filterTodos, getEmptyMessage } = TodoHelper(
     todos,
     setTodos

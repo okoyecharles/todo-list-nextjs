@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 export default function useStorage() {
+  // On server side render
+  if (typeof window === 'undefined') return useState([]);
+
   const storeKey = "next-todo-app";
+  
   const storeExists = localStorage.getItem(storeKey) 
   const store = storeExists ? JSON.parse(storeExists) : [];
   const [state, setState] = useState(store);
