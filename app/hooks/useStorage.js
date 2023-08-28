@@ -9,7 +9,7 @@ export default function useStorage() {
   useEffect(() => {
     const store = localStorage.getItem(storeKey);
     if (store) setState(JSON.parse(store));
-  })
+  }, []);
 
   function setStoreState(newState) {
     localStorage.setItem(storeKey, JSON.stringify(newState));
