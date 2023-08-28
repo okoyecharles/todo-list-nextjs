@@ -37,6 +37,11 @@ export default function Home() {
     - search todo
     - reorder todos (not required now)
 
+    TODOS
+    - Remove blue click highlight on mobile
+    - Prepend todo to list (not append)
+    - Add todo reordering
+
   */
   return (
     <TodoContainer />
