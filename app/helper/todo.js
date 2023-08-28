@@ -15,14 +15,14 @@ function TodoHelper(todos, setTodos) {
     createTodo({ name, description }) {
       try {
         validateTodo({ name, description });
-        const prevTodo = todos.at(-1) ?? { id: -1 };
+        const prevTodo = todos.at(0) ?? { id: -1 };
         const todo = {
           id: prevTodo.id + 1,
           name: name.trim(),
           description: description.trim(),
           completed: false,
         };
-        setTodos([...todos, todo]);
+        setTodos([ todo, ...todos ]);
         return { success: true };
       } catch (error) {
         return { error };
