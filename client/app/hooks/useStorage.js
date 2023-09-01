@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-const BACKEND_URL = "http://localhost:4000";
 
 function mergeTodos(clientTodos, serverTodos) {
   const merged = [];
@@ -15,7 +14,7 @@ function mergeTodos(clientTodos, serverTodos) {
 }
 
 function updateTodos(id, todos) {
-  fetch(`${BACKEND_URL}/todos`, {
+  fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/todos`, {
     method: "PUT",
     body: JSON.stringify({ id, todos }),
     headers: {
