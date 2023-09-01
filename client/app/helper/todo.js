@@ -1,6 +1,7 @@
 import { AiOutlinePlus } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
 
-function TodoHelper(todos, setTodos) {
+export default function TodoHelper(todos, setTodos) {
   function validateTodo(fields) {
     if (fields.name?.trim().length === 0)
       throw Error("Please enter a valid name");
@@ -12,12 +13,14 @@ function TodoHelper(todos, setTodos) {
   }
 
   return {
+    async getTodos() {
+      
+    },
     createTodo({ name, description }) {
       try {
         validateTodo({ name, description });
-        const prevTodo = todos.at(0) ?? { id: -1 };
         const todo = {
-          id: prevTodo.id + 1,
+          id: uuidv4(),
           name: name.trim(),
           description: description.trim(),
           completed: false,
@@ -111,5 +114,3 @@ function TodoHelper(todos, setTodos) {
     },
   };
 }
-
-export default TodoHelper;
