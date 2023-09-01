@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth";
 import TodoContainer from "./components/todo/todo-container";
-import { redirect } from "next/navigation";
 import options from "./api/auth/[...nextauth]/options";
 import Navigation from "./components/nav/navigation";
 
