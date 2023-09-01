@@ -1,6 +1,10 @@
+import { getServerSession } from "next-auth";
 import TodoContainer from "./components/todo/todo-container";
+import { redirect } from "next/navigation";
+import options from "./api/auth/[...nextauth]/options";
+import Navigation from "./components/nav/navigation";
 
-export default function Home() {
+export default async function Home() {
   /* APP LAYOUT
     <C> -> Component, <F> -> From Componenet
   
@@ -43,7 +47,15 @@ export default function Home() {
     - Add todo reordering
 
   */
+  // User session
+  const session = await getServerSession(options);
+
   return (
-    <TodoContainer />
-  )
+    <>
+      <Navigation user={session?.user} />
+      <section className="px-6 py-4 flex justify-center">
+        <TodoContainer user={session?.user} />
+      </section>
+    </>
+  );
 }
