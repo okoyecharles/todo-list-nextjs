@@ -18,7 +18,6 @@ router.post("/signin", async (req, res) => {
       todos: []
     })
       .then((user) => {
-        console.log('From backend', user);
         res.json({ user });
       })
       .catch((err) => {

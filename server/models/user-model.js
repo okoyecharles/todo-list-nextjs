@@ -6,8 +6,8 @@ const userSchema = new Schema({
   email: String,
   image: String,
   googleId: String,
-  todos: [{ id: String, name: String, description: String, completed: Boolean, }]
+  todos: [Object],
 });
 
-const User = mongoose.model('user', userSchema);
-export default User; 
+const User = mongoose.model("user", userSchema);
+export default User;

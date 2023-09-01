@@ -5,7 +5,8 @@ import cookieParser from "cookie-parser";
 import colors from "@colors/colors/safe.js";
 import dotenv from "dotenv";
 import connectToMongoose from "./config/mongo-setup.js";
-import authRouter from "./routes/auth-routes.js"
+import authRouter from "./routes/auth-routes.js";
+import User from "./models/user-model.js";
 dotenv.config();
 
 const app = express();
@@ -17,6 +18,11 @@ app.use(cookieParser());
 
 app.get("/", (_, res) => {
   res.send("Welcome to your express application!");
+});
+app.put("/todos", async (req, res) => {
+  const { id: googleId, todos } = req.body;
+  const user = await User.findOneAndUpdate({ googleId }, { todos });
+  res.json({ user });
 });
 app.use("/auth", authRouter);
 // app.use("/todos")
