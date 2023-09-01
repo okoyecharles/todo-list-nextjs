@@ -4,13 +4,18 @@ import { signIn, signOut } from "next-auth/react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Button from "../element/button";
-import { useEffect } from "react";
 import Image from "next/image";
 
 export default function Navigation({ user }) {
   const profile = user ? (
     <div className="profile flex items-center gap-4">
-      <Image src={user?.image} className="rounded-full select-none" width={24} height={24} />
+      <Image
+        src={user?.image}
+        className="rounded-full select-none"
+        width={24}
+        height={24}
+        alt={user?.name ?? "null"}
+      />
       <Button
         onClick={() => signOut()}
         className="bg-dark-primary text-light-primary ring-[0.5px] ring-line rounded flex items-center gap-2 hover:bg-dark-primary hover:ring-blue"
@@ -29,7 +34,7 @@ export default function Navigation({ user }) {
   );
 
   return (
-    <nav className="py-4 px-6 flex mb-8">
+    <nav className="py-4 px-6 flex mb-8 items-center">
       <a
         href="https://github.com/okoyecharles/todo-list-nextjs"
         target="blank"

@@ -11,7 +11,7 @@ import useStorage from "@/app/hooks/useStorage";
 
 export default function TodoContainer({ user }) {
   // Reminder: Change this back to useStorage
-  const [todos, setTodos] = useStorage();
+  const [todos, setTodos] = useState(user?.todos || []);
   const { createTodo, editTodo, deleteTodo, filterTodos, getEmptyMessage } =
     TodoHelper(todos, setTodos);
 

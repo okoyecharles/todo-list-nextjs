@@ -49,7 +49,6 @@ export default async function Home() {
   */
   // User session
   const session = await getServerSession(options);
-  if (!session) redirect("/api/auth/signin?callbackUrl=/");
 
   return (
     <>

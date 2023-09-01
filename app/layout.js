@@ -1,4 +1,3 @@
-import Navigation from "./components/nav/navigation";
 import AuthProvider from "./context/auth-provider";
 import "./globals.css";
 import localFont from "next/font/local";
