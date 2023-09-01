@@ -9,13 +9,11 @@ import EditTodoModal from "../modal/edit-todo-modal";
 import TodoInfoModal from "../modal/todo-info-modal";
 import useStorage from "@/app/hooks/useStorage";
 
-export default function TodoContainer() {
+export default function TodoContainer({ user }) {
   // Reminder: Change this back to useStorage
   const [todos, setTodos] = useStorage();
-  const { createTodo, editTodo, deleteTodo, filterTodos, getEmptyMessage } = TodoHelper(
-    todos,
-    setTodos
-  );
+  const { createTodo, editTodo, deleteTodo, filterTodos, getEmptyMessage } =
+    TodoHelper(todos, setTodos);
 
   // Filters
   const [searchFilter, setSearchFilter] = useState("");
@@ -39,7 +37,7 @@ export default function TodoContainer() {
       else return getEmptyMessage("filter", dropdownFilter);
     }
     return { id: null, message: null };
-  }, [filteredTodos])
+  }, [filteredTodos]);
 
   return (
     <>
