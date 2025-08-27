@@ -17,7 +17,7 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 
 app.get("/", (_, res) => {
-  res.send("Welcome to your express application!");
+  res.send("Welcome to the Tasks API");
 });
 app.put("/todos", async (req, res) => {
   const { id: googleId, todos } = req.body;
