@@ -27,8 +27,13 @@ app.put("/todos", async (req, res) => {
 app.use("/auth", authRouter);
 // app.use("/todos")
 
-connectToMongoose().then(() => {
-  app.listen(process.env.PORT, () => {
-    console.log(colors.cyan("App started at port ", process.env.PORT));
+connectToMongoose()
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("Database connected");
+      console.log("App started at ::" + colors.cyan(process.env.PORT));
+    });
+  })
+  .catch((_err) => {
+    console.log("Couldn't connect");
   });
-});
